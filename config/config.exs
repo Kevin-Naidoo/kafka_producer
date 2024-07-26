@@ -46,15 +46,20 @@ config :esbuild,
     consumer_group: "consumer-group",
     message_handler: KafkaCluster.Kaffe.MessageProcessor,
     offset_reset_policy: :reset_to_latest,
-    max_bytes: 500_000,
-    worker_allocation_strategy: :worker_per_topic_partition
+    max_bytes: 10_000_000,
+    worker_allocation_strategy: :worker_per_topic_partition,
+    max_poll_records: 500,
+    fetch_min_bytes: 5_000,
+    num_workers: 10  # Increase the number of workers to process messages
   ]
 
   config :kaffe,
   producer: [
     # heroku_kafka_env: true,
     endpoints: [localhost: 9092,localhost: 9093, localhost: 9094],
-    topics: ["my-topic"]
+    topics: ["my-topic"],
+    linger_ms: 10,
+    batch_size: 1000
 
     # # optional
     # partition_strategy: :md5
