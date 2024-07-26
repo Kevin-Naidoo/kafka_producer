@@ -1,4 +1,4 @@
-defmodule KafkaCluster.GroupSubscriberV2 do
+defmodule KafkaCluster.Brod.GroupSubscriberV2 do
   @behaviour :brod_group_subscriber_v2
   # def init(_arg, _arg2) do
   #   {:ok, []}

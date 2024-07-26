@@ -19,7 +19,7 @@ defmodule KafkaCluster.MixProject do
   def application do
     [
       mod: {KafkaCluster.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :kaffe]
     ]
   end
 
@@ -50,7 +50,8 @@ defmodule KafkaCluster.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:brod, "~> 3.15.0"}
+      {:brod, "~> 3.15.0"},
+      {:kaffe, "~> 1.25.0"}
     ]
   end
 

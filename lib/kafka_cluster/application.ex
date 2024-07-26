@@ -4,8 +4,10 @@ defmodule KafkaCluster.Application do
   @moduledoc false
 
   use Application
+  # import Supervisor.Spec
 
   @impl true
+  @spec start(any(), any()) :: {:error, any()} | {:ok, pid()}
   def start(_type, _args) do
     children = [
       # Start the Telemetry supervisor
@@ -17,7 +19,13 @@ defmodule KafkaCluster.Application do
       # Start Finch
       {Finch, name: KafkaCluster.Finch},
       # Start the Endpoint (http/https)
-      KafkaClusterWeb.Endpoint
+      KafkaClusterWeb.Endpoint,
+      # %{
+      #   id: Kaffe.GroupMemberSupervisor,
+      #   start: {Kaffe.GroupMemberSupervisor, :start_link, []},
+      #   type: :supervisor
+      # }
+      Supervisor.Spec.worker(Kaffe.Consumer, [])
       # Start a worker by calling: KafkaCluster.Worker.start_link(arg)
       # {KafkaCluster.Worker, arg}
     ]

@@ -38,13 +38,27 @@ config :esbuild,
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
-  # config :brod,
-  # clients: [
-  #   kafka_client: [
-  #     endpoints: [localhost: 9092,localhost: 9093, localhost: 9094],
-  #     auto_start_producers: true  # This will auto-start the producers with default configs
-  #   ]
-  # ]
+  config :kaffe,
+  consumer: [
+    # heroku_kafka_env: true,
+    endpoints: [localhost: 9092,localhost: 9093, localhost: 9094],
+    topics: ["my-topic"],
+    consumer_group: "consumer-group",
+    message_handler: KafkaCluster.Kaffe.MessageProcessor,
+    offset_reset_policy: :reset_to_latest,
+    max_bytes: 500_000,
+    worker_allocation_strategy: :worker_per_topic_partition
+  ]
+
+  config :kaffe,
+  producer: [
+    # heroku_kafka_env: true,
+    endpoints: [localhost: 9092,localhost: 9093, localhost: 9094],
+    topics: ["my-topic"]
+
+    # # optional
+    # partition_strategy: :md5
+  ]
 # Configure tailwind (the version is required)
 config :tailwind,
   version: "3.3.2",
