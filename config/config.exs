@@ -53,6 +53,15 @@ config :esbuild,
     num_workers: 10  # Increase the number of workers to process messages
   ]
 
+  config :logger,
+  backends: [:console, {LoggerFileBackend, :file_log}],
+  format: "$time $metadata[$level] $message\n",
+  metadata: :all
+
+config :logger, :file_log,
+  path: "file.log",
+  level: :info # or whatever level you prefer
+
   config :kaffe,
   producer: [
     # heroku_kafka_env: true,
@@ -77,9 +86,9 @@ config :tailwind,
   ]
 
 # Configures Elixir's Logger
-config :logger, :console,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+# config :logger, :console,
+#   format: "$time $metadata[$level] $message\n",
+#   metadata: [:request_id]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

@@ -51,7 +51,8 @@ defmodule KafkaCluster.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:brod, "~> 3.15.0"},
-      {:kaffe, "~> 1.25.0"}
+      {:kaffe, "~> 1.25.0"},
+      {:logger_file_backend, "~> 0.0.14"}
     ]
   end
 

@@ -1,0 +1,508 @@
+11:16:11.923 [info]     :supervisor: {:local, :brod_sup}
+    :started: [
+  pid: #PID<0.290.0>,
+  id: :kaffe_producer_client,
+  mfargs: {:brod_client, :start_link,
+   [
+     [{~c"localhost", 9092}, {~c"localhost", 9093}, {~c"localhost", 9094}],
+     :kaffe_producer_client,
+     [
+       auto_start_producers: true,
+       allow_topic_auto_creation: false,
+       default_producer_config: [
+         required_acks: -1,
+         ack_timeout: 1000,
+         partition_buffer_limit: 512,
+         partition_onwire_limit: 1,
+         max_batch_size: 1048576,
+         max_retries: 3,
+         retry_backoff_ms: 500,
+         compression: :no_compression,
+         min_compression_batch_size: 1024
+       ]
+     ]
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.471 [info]     :supervisor: {:local, :brod_sup}
+    :started: [
+  pid: #PID<0.498.0>,
+  id: :"consumer-group",
+  mfargs: {:brod_client, :start_link,
+   [
+     [{~c"localhost", 9092}, {~c"localhost", 9093}, {~c"localhost", 9094}],
+     :"consumer-group",
+     [
+       auto_start_producers: false,
+       allow_topic_auto_creation: false,
+       begin_offset: -1
+     ]
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.521 [info] Group member (consumer-group,coor=#PID<0.502.0>,cb=#PID<0.497.0>,generation=23):
+elected=true
+11:16:12.536 [info] Group member (consumer-group,coor=#PID<0.502.0>,cb=#PID<0.497.0>,generation=23):
+assignments received:
+  my-topic:
+    partition=0 begin_offset=181160
+    partition=1 begin_offset=176343
+    partition=2 begin_offset=173056
+    partition=3 begin_offset=173618
+    partition=4 begin_offset=176245
+    partition=5 begin_offset=176663
+    partition=6 begin_offset=183214
+    partition=7 begin_offset=178614
+    partition=8 begin_offset=182091
+11:16:12.536 [info]     :supervisor: {#PID<0.501.0>, :brod_consumers_sup}
+    :started: [
+  pid: #PID<0.511.0>,
+  id: "my-topic",
+  mfargs: {:supervisor3, :start_link,
+   [
+     :brod_consumers_sup,
+     {:brod_consumers_sup2, #PID<0.498.0>, "my-topic",
+      [
+        auto_start_producers: false,
+        allow_topic_auto_creation: false,
+        begin_offset: -1
+      ]}
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: :infinity,
+  child_type: :supervisor
+]
+11:16:12.546 [info]     :supervisor: {#PID<0.511.0>, :brod_consumers_sup}
+    :started: [
+  pid: #PID<0.515.0>,
+  id: 0,
+  mfargs: {:brod_consumer, :start_link,
+   [
+     #PID<0.498.0>,
+     "my-topic",
+     0,
+     [
+       auto_start_producers: false,
+       allow_topic_auto_creation: false,
+       begin_offset: -1
+     ]
+   ]},
+  restart_type: {:transient, 2},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.548 [info]     :supervisor: {#PID<0.511.0>, :brod_consumers_sup}
+    :started: [
+  pid: #PID<0.517.0>,
+  id: 1,
+  mfargs: {:brod_consumer, :start_link,
+   [
+     #PID<0.498.0>,
+     "my-topic",
+     1,
+     [
+       auto_start_producers: false,
+       allow_topic_auto_creation: false,
+       begin_offset: -1
+     ]
+   ]},
+  restart_type: {:transient, 2},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.550 [info]     :supervisor: {#PID<0.511.0>, :brod_consumers_sup}
+    :started: [
+  pid: #PID<0.518.0>,
+  id: 2,
+  mfargs: {:brod_consumer, :start_link,
+   [
+     #PID<0.498.0>,
+     "my-topic",
+     2,
+     [
+       auto_start_producers: false,
+       allow_topic_auto_creation: false,
+       begin_offset: -1
+     ]
+   ]},
+  restart_type: {:transient, 2},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.550 [info]     :supervisor: {#PID<0.511.0>, :brod_consumers_sup}
+    :started: [
+  pid: #PID<0.519.0>,
+  id: 3,
+  mfargs: {:brod_consumer, :start_link,
+   [
+     #PID<0.498.0>,
+     "my-topic",
+     3,
+     [
+       auto_start_producers: false,
+       allow_topic_auto_creation: false,
+       begin_offset: -1
+     ]
+   ]},
+  restart_type: {:transient, 2},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.551 [info]     :supervisor: {#PID<0.511.0>, :brod_consumers_sup}
+    :started: [
+  pid: #PID<0.520.0>,
+  id: 4,
+  mfargs: {:brod_consumer, :start_link,
+   [
+     #PID<0.498.0>,
+     "my-topic",
+     4,
+     [
+       auto_start_producers: false,
+       allow_topic_auto_creation: false,
+       begin_offset: -1
+     ]
+   ]},
+  restart_type: {:transient, 2},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.552 [info]     :supervisor: {#PID<0.511.0>, :brod_consumers_sup}
+    :started: [
+  pid: #PID<0.521.0>,
+  id: 5,
+  mfargs: {:brod_consumer, :start_link,
+   [
+     #PID<0.498.0>,
+     "my-topic",
+     5,
+     [
+       auto_start_producers: false,
+       allow_topic_auto_creation: false,
+       begin_offset: -1
+     ]
+   ]},
+  restart_type: {:transient, 2},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.552 [info]     :supervisor: {#PID<0.511.0>, :brod_consumers_sup}
+    :started: [
+  pid: #PID<0.522.0>,
+  id: 6,
+  mfargs: {:brod_consumer, :start_link,
+   [
+     #PID<0.498.0>,
+     "my-topic",
+     6,
+     [
+       auto_start_producers: false,
+       allow_topic_auto_creation: false,
+       begin_offset: -1
+     ]
+   ]},
+  restart_type: {:transient, 2},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.553 [info]     :supervisor: {#PID<0.511.0>, :brod_consumers_sup}
+    :started: [
+  pid: #PID<0.523.0>,
+  id: 7,
+  mfargs: {:brod_consumer, :start_link,
+   [
+     #PID<0.498.0>,
+     "my-topic",
+     7,
+     [
+       auto_start_producers: false,
+       allow_topic_auto_creation: false,
+       begin_offset: -1
+     ]
+   ]},
+  restart_type: {:transient, 2},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.554 [info]     :supervisor: {#PID<0.511.0>, :brod_consumers_sup}
+    :started: [
+  pid: #PID<0.524.0>,
+  id: 8,
+  mfargs: {:brod_consumer, :start_link,
+   [
+     #PID<0.498.0>,
+     "my-topic",
+     8,
+     [
+       auto_start_producers: false,
+       allow_topic_auto_creation: false,
+       begin_offset: -1
+     ]
+   ]},
+  restart_type: {:transient, 2},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:12.567 [info] client :"consumer-group" connected to DESKTOP-OLD3VVP.:9092
+
+11:16:12.576 [info] client :"consumer-group" connected to DESKTOP-OLD3VVP.:9094
+
+11:16:12.581 [info] client :"consumer-group" connected to DESKTOP-OLD3VVP.:9093
+
+11:16:58.989 [info]     :supervisor: {#PID<0.325.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.538.0>,
+  id: "my-topic",
+  mfargs: {:supervisor3, :start_link,
+   [
+     :brod_producers_sup,
+     {:brod_producers_sup2, #PID<0.290.0>, "my-topic",
+      [
+        required_acks: -1,
+        ack_timeout: 1000,
+        partition_buffer_limit: 512,
+        partition_onwire_limit: 1,
+        max_batch_size: 1048576,
+        max_retries: 3,
+        retry_backoff_ms: 500,
+        compression: :no_compression,
+        min_compression_batch_size: 1024
+      ]}
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: :infinity,
+  child_type: :supervisor
+]
+11:16:58.995 [info]     :supervisor: {#PID<0.538.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.539.0>,
+  id: 0,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.290.0>,
+     "my-topic",
+     0,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:58.996 [info]     :supervisor: {#PID<0.538.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.540.0>,
+  id: 1,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.290.0>,
+     "my-topic",
+     1,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:58.997 [info]     :supervisor: {#PID<0.538.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.541.0>,
+  id: 2,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.290.0>,
+     "my-topic",
+     2,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:58.998 [info]     :supervisor: {#PID<0.538.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.542.0>,
+  id: 3,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.290.0>,
+     "my-topic",
+     3,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:58.998 [info]     :supervisor: {#PID<0.538.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.543.0>,
+  id: 4,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.290.0>,
+     "my-topic",
+     4,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:58.999 [info]     :supervisor: {#PID<0.538.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.544.0>,
+  id: 5,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.290.0>,
+     "my-topic",
+     5,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:59.000 [info]     :supervisor: {#PID<0.538.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.545.0>,
+  id: 6,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.290.0>,
+     "my-topic",
+     6,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:59.001 [info]     :supervisor: {#PID<0.538.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.546.0>,
+  id: 7,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.290.0>,
+     "my-topic",
+     7,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:59.002 [info]     :supervisor: {#PID<0.538.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.547.0>,
+  id: 8,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.290.0>,
+     "my-topic",
+     8,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:16:59.007 [info] client :kaffe_producer_client connected to DESKTOP-OLD3VVP.:9094
+
+11:16:59.279 [info] Sent 20 messages to topic my-topic in 294 ms
+11:18:37.534 [info] Sent 250 messages to topic my-topic in 2498 ms
