@@ -18,6 +18,13 @@ defmodule KafkaClusterWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    resources "/messages", MessageController
+  end
+
+  scope "/api", KafkaClusterWeb do
+    pipe_through :api
+
+    post "/send_message", MessageController, :send_message
   end
 
   # Other scopes may use custom stacks.

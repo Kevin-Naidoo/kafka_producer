@@ -5,6 +5,8 @@ defmodule KafkaCluster.Kaffe.Producer do
   require Logger
 
   def send_my_message({key, value}, topic, times \\ 1) when is_integer(times) and times > 0 do
+    value = encode_message(value)
+
     start_time = :os.system_time(:millisecond)
 
     Enum.each(1..times, fn _ ->
@@ -17,13 +19,8 @@ defmodule KafkaCluster.Kaffe.Producer do
     Logger.info("Sent #{times} messages to topic #{topic} in #{duration} ms")
   end
 
-
-  # def send_my_message(key, value) do
-  #   Kaffe.Producer.produce_sync(key, value)
-  # end
-
-  # def send_my_message(value) do
-  #   Kaffe.Producer.produce_sync("sample_key", value)
-  # end
+defp encode_message(message) do
+ Jason.encode!(message)
+end
 
 end
