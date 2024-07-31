@@ -2097,3 +2097,6 @@ assignments received:
 16:38:18.900 [info] Sent 1 messages to topic my-topic in 20 ms
 16:43:14.229 [info] Sent 150 messages to topic my-topic in 1253 ms
 16:43:25.047 [info] Sent 250 messages to topic my-topic in 1489 ms
+16:47:20.734 [info] Sent 200 messages to topic my-topic in 977 ms
+16:47:33.891 [info] Sent 250 messages to topic my-topic in 1200 ms
+16:48:04.907 [info] Sent 250 messages to topic my-topic in 1537 ms
