@@ -20,6 +20,7 @@ defmodule KafkaCluster.Application do
       {Finch, name: KafkaCluster.Finch},
       # Start the Endpoint (http/https)
       KafkaClusterWeb.Endpoint,
+      KafkaCluster.Kaffe.ChargeListener,
       # %{
       #   id: Kaffe.GroupMemberSupervisor,
       #   start: {Kaffe.GroupMemberSupervisor, :start_link, []},

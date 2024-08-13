@@ -41,8 +41,8 @@ config :esbuild,
   config :kaffe,
   consumer: [
     # heroku_kafka_env: true,
-    endpoints: [localhost: 9092,localhost: 9093, localhost: 9094],
-    topics: ["my-topic"],
+    endpoints: [{'13.40.7.67', 9092}],
+    topics: ["kafka-topic-test"],
     consumer_group: "consumer-group",
     message_handler: KafkaCluster.Kaffe.MessageProcessor,
     offset_reset_policy: :reset_to_latest,
@@ -65,8 +65,8 @@ config :logger, :file_log,
   config :kaffe,
   producer: [
     # heroku_kafka_env: true,
-    endpoints: [localhost: 9092,localhost: 9093, localhost: 9094],
-    topics: ["my-topic"],
+    endpoints: [{'13.40.7.67', 9092}],
+    topics: ["kafka-topic-test"],
     linger_ms: 10,
     batch_size: 1000
 
