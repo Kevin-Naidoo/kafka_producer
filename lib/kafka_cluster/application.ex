@@ -20,15 +20,7 @@ defmodule KafkaCluster.Application do
       {Finch, name: KafkaCluster.Finch},
       # Start the Endpoint (http/https)
       KafkaClusterWeb.Endpoint,
-      KafkaCluster.Kaffe.ChargeListener,
-      # %{
-      #   id: Kaffe.GroupMemberSupervisor,
-      #   start: {Kaffe.GroupMemberSupervisor, :start_link, []},
-      #   type: :supervisor
-      # }
-      Supervisor.Spec.worker(Kaffe.Consumer, [])
-      # Start a worker by calling: KafkaCluster.Worker.start_link(arg)
-      # {KafkaCluster.Worker, arg}
+      KafkaCluster.Kaffe.ChargeListener
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
