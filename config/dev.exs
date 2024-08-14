@@ -1,11 +1,4 @@
 import Config
-# config :brod,
-# clients: [
-#   kafka_client: [
-#     endpoints: [localhost: 9092,localhost: 9093, localhost: 9094],
-#     auto_start_producers: true  # This will auto-start the producers with default configs
-#   ]
-# ]
 # Configure your database
 config :kafka_cluster, KafkaCluster.Repo,
   username: "postgres",

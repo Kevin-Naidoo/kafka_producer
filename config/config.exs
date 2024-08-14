@@ -38,20 +38,6 @@ config :esbuild,
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
-  config :kaffe,
-  consumer: [
-    # heroku_kafka_env: true,
-    endpoints: [{'13.40.7.67', 9092}],
-    topics: ["kafka-topic-test"],
-    consumer_group: "consumer-group",
-    message_handler: KafkaCluster.Kaffe.MessageProcessor,
-    offset_reset_policy: :reset_to_latest,
-    max_bytes: 10_000_000,
-    worker_allocation_strategy: :worker_per_topic_partition,
-    max_poll_records: 500,
-    fetch_min_bytes: 5_000,
-    num_workers: 10  # Increase the number of workers to process messages
-  ]
 
   config :logger,
   backends: [:console, {LoggerFileBackend, :file_log}],
