@@ -1,0 +1,691 @@
+11:33:45.606 [info]     :supervisor: {:local, :brod_sup}
+    :started: [
+  pid: #PID<0.207.0>,
+  id: :kaffe_producer_client,
+  mfargs: {:brod_client, :start_link,
+   [
+     [{~c"1010101", 9092}],
+     :kaffe_producer_client,
+     [
+       auto_start_producers: true,
+       allow_topic_auto_creation: false,
+       default_producer_config: [
+         required_acks: -1,
+         ack_timeout: 1000,
+         partition_buffer_limit: 512,
+         partition_onwire_limit: 1,
+         max_batch_size: 1048576,
+         max_retries: 3,
+         retry_backoff_ms: 500,
+         compression: :no_compression,
+         min_compression_batch_size: 1024
+       ]
+     ]
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:33:46.042 [info] Application kafka_cluster exited: KafkaCluster.Application.start(:normal, []) returned an error: shutdown: failed to start child: KafkaCluster.Kaffe.ChargeListener
+    ** (EXIT) an exception was raised:
+        ** (MatchError) no match of right hand side value: {:error, {:bad_return_from_init, {:stop, %Postgrex.Error{message: nil, postgres: %{code: :invalid_password, file: "auth.c", line: "335", message: "password authentication failed for user \"postgres\"", pg_code: "28P01", routine: "auth_failed", severity: "FATAL", unknown: "FATAL"}, connection_id: nil, query: nil}, %Postgrex.SimpleConnection{idle_interval: 5000, protocol: nil, auto_reconnect: false, reconnect_backoff: 500, state: {Postgrex.Notifications, %Postgrex.Notifications{from: nil, ref: nil, auto_reconnect: false, connected: false, listeners: %{}, listener_channels: %{}}}}}}}
+            (kafka_cluster 0.1.0) lib/kafka_cluster/kaffe/charge_listener.ex:12: KafkaCluster.Kaffe.ChargeListener.init/1
+            (stdlib 4.3.1.2) gen_server.erl:851: :gen_server.init_it/2
+            (stdlib 4.3.1.2) gen_server.erl:814: :gen_server.init_it/6
+            (stdlib 4.3.1.2) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+11:33:46.064 [info] Application logger_file_backend exited: :stopped
+11:33:46.065 [info] Application gettext exited: :stopped
+11:33:46.065 [info] Application expo exited: :stopped
+11:33:46.066 [info] Application telemetry_poller exited: :stopped
+11:33:46.068 [info] Application swoosh exited: :stopped
+11:33:46.068 [info] Application finch exited: :stopped
+11:33:46.068 [info] Application nimble_options exited: :stopped
+11:33:46.069 [info] Application nimble_pool exited: :stopped
+11:33:46.070 [info] Application mint exited: :stopped
+11:33:46.070 [info] Application hpax exited: :stopped
+11:33:46.070 [info] Application xmerl exited: :stopped
+11:33:46.071 [info] Application tailwind exited: :stopped
+11:33:46.072 [info] Application esbuild exited: :stopped
+11:33:46.072 [info] Application phoenix_live_dashboard exited: :stopped
+11:33:46.073 [info] Application telemetry_metrics exited: :stopped
+11:33:46.073 [info] Application phoenix_live_view exited: :stopped
+11:33:46.075 [info] Application phoenix_live_reload exited: :stopped
+11:33:46.081 [info] Application file_system exited: :stopped
+11:33:46.085 [info] Application ecto_sql exited: :stopped
+11:33:46.087 [info] Application phoenix_ecto exited: :stopped
+11:33:46.088 [info] Application postgrex exited: :stopped
+11:33:46.092 [info] Application db_connection exited: :stopped
+11:33:46.092 [info] Application ecto exited: :stopped
+11:33:46.093 [info] Application phoenix exited: :stopped
+11:33:46.093 [info] Application jason exited: :stopped
+11:33:46.093 [info] Application decimal exited: :stopped
+11:33:46.093 [info] Application castore exited: :stopped
+11:33:46.093 [info] Application websock_adapter exited: :stopped
+11:33:46.094 [info] Application plug_cowboy exited: :stopped
+11:33:46.094 [info] Application cowboy_telemetry exited: :stopped
+11:33:46.095 [info] Application cowboy exited: :stopped
+11:33:46.097 [info] Application ranch exited: :stopped
+11:33:46.097 [info] Application cowlib exited: :stopped
+11:33:46.097 [info] Application websock exited: :stopped
+11:33:46.097 [info] Application phoenix_template exited: :stopped
+11:33:46.097 [info] Application phoenix_html exited: :stopped
+11:33:46.098 [info] Application phoenix_pubsub exited: :stopped
+11:33:46.099 [info] Application plug exited: :stopped
+11:33:46.100 [info] Application telemetry exited: :stopped
+11:33:46.100 [info] Application plug_crypto exited: :stopped
+11:33:46.100 [info] Application mime exited: :stopped
+11:33:46.100 [info] Application eex exited: :stopped
+11:33:46.101 [info] Application kaffe exited: :stopped
+11:33:46.101 [info] Application retry exited: :stopped
+11:33:50.623 [warning] :brod_client [#PID<0.207.0>] :kaffe_producer_client is terminating
+reason: [
+  {{~c"1010101", 9092},
+   {:timeout,
+    [
+      {:kpro_connection, :connect, 4,
+       [
+         file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+         line: 207
+       ]},
+      {:kpro_connection, :init, 4,
+       [
+         file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+         line: 170
+       ]},
+      {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+    ]}}
+]
+
+11:33:50.625 [error] GenServer :kaffe_producer_client terminating
+** (stop) [{{~c"1010101", 9092}, {:timeout, [{:kpro_connection, :connect, 4, [file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl", line: 207]}, {:kpro_connection, :init, 4, [file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl", line: 170]}, {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}]}}]
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_client.erl:554: :brod_client.ensure_metadata_connection/1
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_client.erl:300: :brod_client.handle_info/2
+    (stdlib 4.3.1.2) gen_server.erl:1123: :gen_server.try_dispatch/4
+    (stdlib 4.3.1.2) gen_server.erl:1200: :gen_server.handle_msg/6
+    (stdlib 4.3.1.2) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+Last message: :init
+State: {:state, :kaffe_producer_client, [{~c"1010101", 9092}], :undefined, [], :undefined, :undefined, [auto_start_producers: true, allow_topic_auto_creation: false, default_producer_config: [required_acks: -1, ack_timeout: 1000, partition_buffer_limit: 512, partition_onwire_limit: 1, max_batch_size: 1048576, max_retries: 3, retry_backoff_ms: 500, compression: :no_compression, min_compression_batch_size: 1024]], :kaffe_producer_client}
+11:33:50.627 [info] Application brod exited: :stopped
+11:33:50.627 [info] Application supervisor3 exited: :stopped
+11:33:50.627 [info] Application kafka_protocol exited: :stopped
+11:33:50.627 [info] Application crc32cer exited: :stopped
+11:33:50.627 [info] Application snappyer exited: :stopped
+11:33:50.628 [info] Application runtime_tools exited: :stopped
+11:34:58.991 [info]     :supervisor: {:local, :brod_sup}
+    :started: [
+  pid: #PID<0.207.0>,
+  id: :kaffe_producer_client,
+  mfargs: {:brod_client, :start_link,
+   [
+     [{~c"1010101", 9092}],
+     :kaffe_producer_client,
+     [
+       auto_start_producers: true,
+       allow_topic_auto_creation: false,
+       default_producer_config: [
+         required_acks: -1,
+         ack_timeout: 1000,
+         partition_buffer_limit: 512,
+         partition_onwire_limit: 1,
+         max_batch_size: 1048576,
+         max_retries: 3,
+         retry_backoff_ms: 500,
+         compression: :no_compression,
+         min_compression_batch_size: 1024
+       ]
+     ]
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:34:59.415 [info] Running KafkaClusterWeb.Endpoint with cowboy 2.12.0 at 0.0.0.0:4080 (http)
+11:34:59.421 [info] Access KafkaClusterWeb.Endpoint at http://localhost:4080
+11:34:59.474 [info] Application kafka_cluster exited: KafkaCluster.Application.start(:normal, []) returned an error: shutdown: failed to start child: KafkaCluster.Kaffe.ChargeListener
+    ** (EXIT) an exception was raised:
+        ** (MatchError) no match of right hand side value: {:error, {:bad_return_from_init, {:stop, %Postgrex.Error{message: nil, postgres: %{code: :invalid_password, file: "auth.c", line: "335", message: "password authentication failed for user \"postgres\"", pg_code: "28P01", routine: "auth_failed", severity: "FATAL", unknown: "FATAL"}, connection_id: nil, query: nil}, %Postgrex.SimpleConnection{idle_interval: 5000, protocol: nil, auto_reconnect: false, reconnect_backoff: 500, state: {Postgrex.Notifications, %Postgrex.Notifications{from: nil, ref: nil, auto_reconnect: false, connected: false, listeners: %{}, listener_channels: %{}}}}}}}
+            (kafka_cluster 0.1.0) lib/kafka_cluster/kaffe/charge_listener.ex:12: KafkaCluster.Kaffe.ChargeListener.init/1
+            (stdlib 4.3.1.2) gen_server.erl:851: :gen_server.init_it/2
+            (stdlib 4.3.1.2) gen_server.erl:814: :gen_server.init_it/6
+            (stdlib 4.3.1.2) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+11:34:59.523 [info] Application logger_file_backend exited: :stopped
+11:34:59.525 [info] Application gettext exited: :stopped
+11:34:59.525 [info] Application expo exited: :stopped
+11:34:59.525 [info] Application telemetry_poller exited: :stopped
+11:34:59.531 [info] Application swoosh exited: :stopped
+11:34:59.531 [info] Application finch exited: :stopped
+11:34:59.531 [info] Application nimble_options exited: :stopped
+11:34:59.533 [info] Application nimble_pool exited: :stopped
+11:34:59.534 [info] Application mint exited: :stopped
+11:34:59.534 [info] Application hpax exited: :stopped
+11:34:59.534 [info] Application xmerl exited: :stopped
+11:34:59.535 [info] Application tailwind exited: :stopped
+11:34:59.538 [info] Application esbuild exited: :stopped
+11:34:59.539 [info] Application phoenix_live_dashboard exited: :stopped
+11:34:59.539 [info] Application telemetry_metrics exited: :stopped
+11:34:59.540 [info] Application phoenix_live_view exited: :stopped
+11:34:59.541 [info] Application phoenix_live_reload exited: :stopped
+11:34:59.549 [info] Application file_system exited: :stopped
+11:34:59.550 [info] Application ecto_sql exited: :stopped
+11:34:59.551 [info] Application phoenix_ecto exited: :stopped
+11:34:59.552 [info] Application postgrex exited: :stopped
+11:34:59.554 [info] Application db_connection exited: :stopped
+11:34:59.555 [info] Application ecto exited: :stopped
+11:34:59.556 [info] Application phoenix exited: :stopped
+11:34:59.557 [info] Application jason exited: :stopped
+11:34:59.557 [info] Application decimal exited: :stopped
+11:34:59.557 [info] Application castore exited: :stopped
+11:34:59.557 [info] Application websock_adapter exited: :stopped
+11:34:59.558 [info] Application plug_cowboy exited: :stopped
+11:34:59.559 [info] Application cowboy_telemetry exited: :stopped
+11:34:59.560 [info] Application cowboy exited: :stopped
+11:34:59.560 [info] Application ranch exited: :stopped
+11:34:59.560 [info] Application cowlib exited: :stopped
+11:34:59.561 [info] Application websock exited: :stopped
+11:34:59.561 [info] Application phoenix_template exited: :stopped
+11:34:59.561 [info] Application phoenix_html exited: :stopped
+11:34:59.561 [info] Application phoenix_pubsub exited: :stopped
+11:34:59.567 [info] Application plug exited: :stopped
+11:34:59.568 [info] Application telemetry exited: :stopped
+11:34:59.569 [info] Application plug_crypto exited: :stopped
+11:34:59.569 [info] Application mime exited: :stopped
+11:34:59.569 [info] Application eex exited: :stopped
+11:34:59.572 [info] Application kaffe exited: :stopped
+11:34:59.572 [info] Application retry exited: :stopped
+11:35:04.010 [warning] :brod_client [#PID<0.207.0>] :kaffe_producer_client is terminating
+reason: [
+  {{~c"1010101", 9092},
+   {:timeout,
+    [
+      {:kpro_connection, :connect, 4,
+       [
+         file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+         line: 207
+       ]},
+      {:kpro_connection, :init, 4,
+       [
+         file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+         line: 170
+       ]},
+      {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+    ]}}
+]
+
+11:35:04.010 [error] GenServer :kaffe_producer_client terminating
+** (stop) [{{~c"1010101", 9092}, {:timeout, [{:kpro_connection, :connect, 4, [file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl", line: 207]}, {:kpro_connection, :init, 4, [file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl", line: 170]}, {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}]}}]
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_client.erl:554: :brod_client.ensure_metadata_connection/1
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_client.erl:300: :brod_client.handle_info/2
+    (stdlib 4.3.1.2) gen_server.erl:1123: :gen_server.try_dispatch/4
+    (stdlib 4.3.1.2) gen_server.erl:1200: :gen_server.handle_msg/6
+    (stdlib 4.3.1.2) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+Last message: :init
+State: {:state, :kaffe_producer_client, [{~c"1010101", 9092}], :undefined, [], :undefined, :undefined, [auto_start_producers: true, allow_topic_auto_creation: false, default_producer_config: [required_acks: -1, ack_timeout: 1000, partition_buffer_limit: 512, partition_onwire_limit: 1, max_batch_size: 1048576, max_retries: 3, retry_backoff_ms: 500, compression: :no_compression, min_compression_batch_size: 1024]], :kaffe_producer_client}
+11:35:04.011 [info] Application brod exited: :stopped
+11:35:04.012 [info] Application supervisor3 exited: :stopped
+11:35:04.012 [info] Application kafka_protocol exited: :stopped
+11:35:04.012 [info] Application crc32cer exited: :stopped
+11:35:04.012 [info] Application snappyer exited: :stopped
+11:35:04.012 [info] Application runtime_tools exited: :stopped
+11:35:54.261 [info]     :supervisor: {:local, :brod_sup}
+    :started: [
+  pid: #PID<0.220.0>,
+  id: :kaffe_producer_client,
+  mfargs: {:brod_client, :start_link,
+   [
+     [{~c"1010101", 9092}],
+     :kaffe_producer_client,
+     [
+       auto_start_producers: true,
+       allow_topic_auto_creation: false,
+       default_producer_config: [
+         required_acks: -1,
+         ack_timeout: 1000,
+         partition_buffer_limit: 512,
+         partition_onwire_limit: 1,
+         max_batch_size: 1048576,
+         max_retries: 3,
+         retry_backoff_ms: 500,
+         compression: :no_compression,
+         min_compression_batch_size: 1024
+       ]
+     ]
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:35:54.700 [info] Running KafkaClusterWeb.Endpoint with cowboy 2.12.0 at 0.0.0.0:4080 (http)
+11:35:54.715 [info] Access KafkaClusterWeb.Endpoint at http://localhost:4080
+11:35:54.737 [info] Thoma
+11:35:59.286 [warning] :brod_client [#PID<0.220.0>] :kaffe_producer_client is terminating
+reason: [
+  {{~c"1010101", 9092},
+   {:timeout,
+    [
+      {:kpro_connection, :connect, 4,
+       [
+         file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+         line: 207
+       ]},
+      {:kpro_connection, :init, 4,
+       [
+         file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+         line: 170
+       ]},
+      {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+    ]}}
+]
+
+11:35:59.292 [error] GenServer :kaffe_producer_client terminating
+** (stop) [{{~c"1010101", 9092}, {:timeout, [{:kpro_connection, :connect, 4, [file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl", line: 207]}, {:kpro_connection, :init, 4, [file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl", line: 170]}, {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}]}}]
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_client.erl:554: :brod_client.ensure_metadata_connection/1
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_client.erl:300: :brod_client.handle_info/2
+    (stdlib 4.3.1.2) gen_server.erl:1123: :gen_server.try_dispatch/4
+    (stdlib 4.3.1.2) gen_server.erl:1200: :gen_server.handle_msg/6
+    (stdlib 4.3.1.2) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+Last message: :init
+State: {:state, :kaffe_producer_client, [{~c"1010101", 9092}], :undefined, [], :undefined, :undefined, [auto_start_producers: true, allow_topic_auto_creation: false, default_producer_config: [required_acks: -1, ack_timeout: 1000, partition_buffer_limit: 512, partition_onwire_limit: 1, max_batch_size: 1048576, max_retries: 3, retry_backoff_ms: 500, compression: :no_compression, min_compression_batch_size: 1024]], :kaffe_producer_client}
+11:36:09.303 [info]     :supervisor: {:local, :brod_sup}
+    :started: [
+  pid: #PID<0.561.0>,
+  id: :kaffe_producer_client,
+  mfargs: {:brod_client, :start_link,
+   [
+     [{~c"1010101", 9092}],
+     :kaffe_producer_client,
+     [
+       auto_start_producers: true,
+       allow_topic_auto_creation: false,
+       default_producer_config: [
+         required_acks: -1,
+         ack_timeout: 1000,
+         partition_buffer_limit: 512,
+         partition_onwire_limit: 1,
+         max_batch_size: 1048576,
+         max_retries: 3,
+         retry_backoff_ms: 500,
+         compression: :no_compression,
+         min_compression_batch_size: 1024
+       ]
+     ]
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:36:14.305 [warning] :brod_client [#PID<0.561.0>] :kaffe_producer_client is terminating
+reason: [
+  {{~c"1010101", 9092},
+   {:timeout,
+    [
+      {:kpro_connection, :connect, 4,
+       [
+         file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+         line: 207
+       ]},
+      {:kpro_connection, :init, 4,
+       [
+         file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+         line: 170
+       ]},
+      {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+    ]}}
+]
+
+11:36:14.306 [error] GenServer :kaffe_producer_client terminating
+** (stop) [{{~c"1010101", 9092}, {:timeout, [{:kpro_connection, :connect, 4, [file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl", line: 207]}, {:kpro_connection, :init, 4, [file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl", line: 170]}, {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}]}}]
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_client.erl:554: :brod_client.ensure_metadata_connection/1
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_client.erl:300: :brod_client.handle_info/2
+    (stdlib 4.3.1.2) gen_server.erl:1123: :gen_server.try_dispatch/4
+    (stdlib 4.3.1.2) gen_server.erl:1200: :gen_server.handle_msg/6
+    (stdlib 4.3.1.2) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+Last message: :init
+State: {:state, :kaffe_producer_client, [{~c"1010101", 9092}], :undefined, [], :undefined, :undefined, [auto_start_producers: true, allow_topic_auto_creation: false, default_producer_config: [required_acks: -1, ack_timeout: 1000, partition_buffer_limit: 512, partition_onwire_limit: 1, max_batch_size: 1048576, max_retries: 3, retry_backoff_ms: 500, compression: :no_compression, min_compression_batch_size: 1024]], :kaffe_producer_client}
+11:36:24.307 [info]     :supervisor: {:local, :brod_sup}
+    :started: [
+  pid: #PID<0.563.0>,
+  id: :kaffe_producer_client,
+  mfargs: {:brod_client, :start_link,
+   [
+     [{~c"1010101", 9092}],
+     :kaffe_producer_client,
+     [
+       auto_start_producers: true,
+       allow_topic_auto_creation: false,
+       default_producer_config: [
+         required_acks: -1,
+         ack_timeout: 1000,
+         partition_buffer_limit: 512,
+         partition_onwire_limit: 1,
+         max_batch_size: 1048576,
+         max_retries: 3,
+         retry_backoff_ms: 500,
+         compression: :no_compression,
+         min_compression_batch_size: 1024
+       ]
+     ]
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:36:29.310 [warning] :brod_client [#PID<0.563.0>] :kaffe_producer_client is terminating
+reason: [
+  {{~c"1010101", 9092},
+   {:timeout,
+    [
+      {:kpro_connection, :connect, 4,
+       [
+         file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+         line: 207
+       ]},
+      {:kpro_connection, :init, 4,
+       [
+         file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+         line: 170
+       ]},
+      {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+    ]}}
+]
+
+11:36:29.312 [error] GenServer :kaffe_producer_client terminating
+** (stop) [{{~c"1010101", 9092}, {:timeout, [{:kpro_connection, :connect, 4, [file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl", line: 207]}, {:kpro_connection, :init, 4, [file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl", line: 170]}, {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}]}}]
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_client.erl:554: :brod_client.ensure_metadata_connection/1
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_client.erl:300: :brod_client.handle_info/2
+    (stdlib 4.3.1.2) gen_server.erl:1123: :gen_server.try_dispatch/4
+    (stdlib 4.3.1.2) gen_server.erl:1200: :gen_server.handle_msg/6
+    (stdlib 4.3.1.2) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+Last message: :init
+State: {:state, :kaffe_producer_client, [{~c"1010101", 9092}], :undefined, [], :undefined, :undefined, [auto_start_producers: true, allow_topic_auto_creation: false, default_producer_config: [required_acks: -1, ack_timeout: 1000, partition_buffer_limit: 512, partition_onwire_limit: 1, max_batch_size: 1048576, max_retries: 3, retry_backoff_ms: 500, compression: :no_compression, min_compression_batch_size: 1024]], :kaffe_producer_client}
+11:38:16.349 [info]     :supervisor: {:local, :brod_sup}
+    :started: [
+  pid: #PID<0.207.0>,
+  id: :kaffe_producer_client,
+  mfargs: {:brod_client, :start_link,
+   [
+     [{~c"10.10.10.129", 9092}],
+     :kaffe_producer_client,
+     [
+       auto_start_producers: true,
+       allow_topic_auto_creation: false,
+       default_producer_config: [
+         required_acks: -1,
+         ack_timeout: 1000,
+         partition_buffer_limit: 512,
+         partition_onwire_limit: 1,
+         max_batch_size: 1048576,
+         max_retries: 3,
+         retry_backoff_ms: 500,
+         compression: :no_compression,
+         min_compression_batch_size: 1024
+       ]
+     ]
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:38:17.532 [info] Running KafkaClusterWeb.Endpoint with cowboy 2.12.0 at 0.0.0.0:4080 (http)
+11:38:17.540 [info] Access KafkaClusterWeb.Endpoint at http://localhost:4080
+11:38:17.582 [info] Thoma
+11:43:47.969 [info]     :supervisor: {#PID<0.234.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.540.0>,
+  id: "charges",
+  mfargs: {:supervisor3, :start_link,
+   [
+     :brod_producers_sup,
+     {:brod_producers_sup2, #PID<0.207.0>, "charges",
+      [
+        required_acks: -1,
+        ack_timeout: 1000,
+        partition_buffer_limit: 512,
+        partition_onwire_limit: 1,
+        max_batch_size: 1048576,
+        max_retries: 3,
+        retry_backoff_ms: 500,
+        compression: :no_compression,
+        min_compression_batch_size: 1024
+      ]}
+   ]},
+  restart_type: {:permanent, 10},
+  shutdown: :infinity,
+  child_type: :supervisor
+]
+11:43:47.978 [info]     :supervisor: {#PID<0.540.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.541.0>,
+  id: 0,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.207.0>,
+     "charges",
+     0,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:43:47.979 [info]     :supervisor: {#PID<0.540.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.542.0>,
+  id: 1,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.207.0>,
+     "charges",
+     1,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:43:47.980 [info]     :supervisor: {#PID<0.540.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.543.0>,
+  id: 2,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.207.0>,
+     "charges",
+     2,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:43:55.985 [error] client :kaffe_producer_client failed to connect to kafka2:9092
+reason:{:nxdomain,
+ [
+   {:kpro_connection, :connect, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 207
+    ]},
+   {:kpro_connection, :init, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 170
+    ]},
+   {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+ ]}
+11:43:55.985 [warning] Failed to (re)init connection, reason:
+{:nxdomain,
+ [
+   {:kpro_connection, :connect, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 207
+    ]},
+   {:kpro_connection, :init, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 170
+    ]},
+   {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+ ]}
+11:43:56.495 [error] :kaffe_producer_client (re)connect to kafka2:9092 aborted.
+last failure: {:nxdomain,
+ [
+   {:kpro_connection, :connect, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 207
+    ]},
+   {:kpro_connection, :init, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 170
+    ]},
+   {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+ ]}
+11:43:56.496 [warning] Failed to (re)init connection, reason:
+{:nxdomain,
+ [
+   {:kpro_connection, :connect, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 207
+    ]},
+   {:kpro_connection, :init, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 170
+    ]},
+   {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+ ]}
+11:44:05.003 [error] client :kaffe_producer_client failed to connect to kafka2:9092
+reason:{:nxdomain,
+ [
+   {:kpro_connection, :connect, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 207
+    ]},
+   {:kpro_connection, :init, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 170
+    ]},
+   {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+ ]}
+11:44:05.003 [warning] Failed to (re)init connection, reason:
+{:nxdomain,
+ [
+   {:kpro_connection, :connect, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 207
+    ]},
+   {:kpro_connection, :init, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 170
+    ]},
+   {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+ ]}
+11:44:05.509 [error] :kaffe_producer_client (re)connect to kafka2:9092 aborted.
+last failure: {:nxdomain,
+ [
+   {:kpro_connection, :connect, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 207
+    ]},
+   {:kpro_connection, :init, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 170
+    ]},
+   {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+ ]}
+11:44:05.509 [warning] Failed to (re)init connection, reason:
+{:nxdomain,
+ [
+   {:kpro_connection, :connect, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 207
+    ]},
+   {:kpro_connection, :init, 4,
+    [
+      file: ~c"/home/kevin/desktop/kafka_producer/deps/kafka_protocol/src/kpro_connection.erl",
+      line: 170
+    ]},
+   {:proc_lib, :init_p_do_apply, 3, [file: ~c"proc_lib.erl", line: 240]}
+ ]}
+11:44:05.510 [error] GenServer #PID<0.542.0> terminating
+** (stop) {:reached_max_retries, :no_leader_connection}
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_producer_buffer.erl:312: :brod_producer_buffer.rebuffer_or_crash/3
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_producer_buffer.erl:296: :brod_producer_buffer.do_send/4
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_producer.erl:525: :brod_producer.maybe_produce/1
+    (brod 3.15.6) /home/kevin/desktop/kafka_producer/deps/brod/src/brod_producer.erl:325: :brod_producer.handle_info/2
+    (stdlib 4.3.1.2) gen_server.erl:1123: :gen_server.try_dispatch/4
+    (stdlib 4.3.1.2) gen_server.erl:1200: :gen_server.handle_msg/6
+    (stdlib 4.3.1.2) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+Last message: :retry
+State: {:state, #PID<0.207.0>, "charges", 1, :undefined, :undefined, {:buf, 512, 1, 1048576, 3, 0, 0, {&:brod_producer.do_send_fun/4, {"charges", 1, -1, 1000, :no_compression}}, 1, 0, {[], []}, {[], []}, []}, 500, #Reference<0.2694426415.1245970433.114806>, :undefined, {:default, 0}}
+11:44:05.516 [info] Sent 5 messages to topic charges in 17560 ms
+11:44:10.516 [info]     :supervisor: {#PID<0.540.0>, :brod_producers_sup}
+    :started: [
+  pid: #PID<0.550.0>,
+  id: 1,
+  mfargs: {:brod_producer, :start_link,
+   [
+     #PID<0.207.0>,
+     "charges",
+     1,
+     [
+       required_acks: -1,
+       ack_timeout: 1000,
+       partition_buffer_limit: 512,
+       partition_onwire_limit: 1,
+       max_batch_size: 1048576,
+       max_retries: 3,
+       retry_backoff_ms: 500,
+       compression: :no_compression,
+       min_compression_batch_size: 1024
+     ]
+   ]},
+  restart_type: {:permanent, 5},
+  shutdown: 5000,
+  child_type: :worker
+]
+11:47:16.366 [info] client :kaffe_producer_client connected to kafka2:9092
+
+11:47:16.409 [info] Sent 5 messages to topic charges in 87 ms
+11:57:16.519 [info] client :kaffe_producer_client: payload connection down kafka2:9092
+reason:{:shutdown, :tcp_closed}

@@ -11,7 +11,7 @@ defmodule KafkaCluster.Kaffe.ChargeListener do
     def init(_) do
       {:ok, _conn} = Postgrex.Notifications.start_link(name: :notifications, hostname: "localhost",
       username: "postgres",
-      password: "123456",
+      password: "postgres",
       database: "kafka_cluster_dev")
 
       Logger.info("Thoma")

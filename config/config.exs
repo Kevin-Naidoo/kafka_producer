@@ -51,8 +51,8 @@ config :logger, :file_log,
   config :kaffe,
   producer: [
     # heroku_kafka_env: true,
-    endpoints: [{'13.40.7.67', 9092}],
-    topics: ["kafka-topic-test"],
+    endpoints: [{System.get_env("IP", "localhost") |> String.to_charlist , 9092}],
+    topics: [System.get_env("CLUSTER_TOPIC")],
     linger_ms: 10,
     batch_size: 1000
 

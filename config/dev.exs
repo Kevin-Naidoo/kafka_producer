@@ -2,7 +2,7 @@ import Config
 # Configure your database
 config :kafka_cluster, KafkaCluster.Repo,
   username: "postgres",
-  password: "123456",
+  password: "postgres",
   hostname: "localhost",
   database: "kafka_cluster_dev",
   stacktrace: true,
